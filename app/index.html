@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noteblockly - Muzyka z Note Blocków</title>
+
+```
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #101114;
+        color: #ffffff;
+    }
+
+    header {
+        background: #17191e;
+        border-bottom: 1px solid #2a2d34;
+        padding: 18px 30px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .header-inner {
+        max-width: 1100px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .logo-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: #3b82f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 23px;
+    }
+
+    .logo span {
+        color: #7db4ff;
+    }
+
+    .github {
+        color: #cfd3dc;
+        text-decoration: none;
+        padding: 9px 14px;
+        border: 1px solid #343841;
+        border-radius: 8px;
+        transition: 0.2s;
+    }
+
+    .github:hover {
+        background: #252932;
+        color: white;
+    }
+
+    main {
+        max-width: 1100px;
+        margin: auto;
+        padding: 55px 25px 150px;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 25px 0 45px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        margin: 0 0 12px;
+    }
+
+    .hero h1 span {
+        color: #6ea8ff;
+    }
+
+    .hero p {
+        margin: 0 auto;
+        max-width: 650px;
+        color: #aeb4c0;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .search {
+        margin: 0 auto 35px;
+        max-width: 650px;
+    }
+
+    .search input {
+        width: 100%;
+        padding: 15px 18px;
+        background: #191b20;
+        color: white;
+        border: 1px solid #343841;
+        border-radius: 10px;
+        outline: none;
+        font-size: 16px;
+    }
+
+    .search input:focus {
+        border-color: #5e98ed;
+    }
+
+    .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .section-title h2 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+    .count {
+        color: #858c99;
+        font-size: 14px;
+    }
+
+    .songs {
+        display: grid;
+        gap: 10px;
+    }
+
+    .song {
+        background: #181a1f;
+        border: 1px solid #292c33;
+        border-radius: 12px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: 0.2s;
+    }
+
+    .song:hover {
+        background: #1e2127;
+        border-color: #3a3f49;
+    }
+
+    .play {
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #3b82f6;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .play:hover {
+        background: #5595ff;
+    }
+
+    .song-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .song-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .song-file {
+        color: #7f8692;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .download {
+        text-decoration: none;
+        color: #b9cfff;
+        border: 1px solid #35445d;
+        padding: 9px 13px;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+    .download:hover {
+        background: #25334a;
+        color: white;
+    }
+
+    .empty {
+        display: none;
+        text-align: center;
+        color: #858c99;
+        padding: 40px;
+        background: #181a1f;
+        border-radius: 12px;
+        border: 1px solid #292c33;
+    }
+
+    .player {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(20, 22, 27, 0.97);
+        border-top: 1px solid #30343d;
+        padding: 12px 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    .player-inner {
+        max-width: 1100px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .now-playing {
+        width: 230px;
+        min-width: 0;
+    }
+
+    .now-playing-title {
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .now-playing-subtitle {
+        color: #7f8692;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    audio {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    footer {
+        text-align: center;
+        color: #646b77;
+        font-size: 13px;
+        margin-top: 50px;
+    }
+
+    @media (max-width: 650px) {
+        header {
+            padding: 15px;
+        }
+
+        .header-inner {
+            justify-content: center;
+        }
+
+        .github {
+            display: none;
+        }
+
+        main {
+            padding: 35px 15px 150px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+        }
+
+        .hero p {
+            font-size: 16px;
+        }
+
+        .download {
+            font-size: 0;
+            padding: 10px;
+        }
+
+        .download::after {
+            content: "↓";
+            font-size: 18px;
+        }
+
+        .player-inner {
+            gap: 10px;
+        }
+
+        .now-playing {
+            display: none;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-icon">♫</div>
+            <div>Note<span>blockly</span></div>
+        </div>
+
+```
+    <a class="github" href="https://github.com/" target="_blank">
+        GitHub
+    </a>
+</div>
+```
+
+</header>
+
+<main>
+
+```
+<section class="hero">
+    <h1>🎵 <span>Noteblockly</span></h1>
+    <p>
+        Muzyka inspirowana brzmieniem Minecraftowych Note Blocków.
+        Odtwarzaj gotowe utwory i pobieraj je w formacie MP3.
+    </p>
+</section>
+
+<div class="search">
+    <input
+        type="text"
+        id="search"
+        placeholder="🔎 Szukaj utworu..."
+        autocomplete="off"
+    >
+</div>
+
+<div class="section-title">
+    <h2>Utwory</h2>
+    <div class="count" id="count"></div>
+</div>
+
+<section class="songs" id="songs">
+
+    <!--
+        DODAWANIE UTWORU:
+
+        Skopiuj poniższy blok i zmień:
+        - nazwę utworu
+        - nazwę pliku MP3
+    -->
+
+    <article class="song" data-name="Przykładowy utwór">
+        <button
+            class="play"
+            onclick="playSong(
+                'Przykładowy utwór',
+                'music/przykladowy-utwor.mp3'
+            )"
+        >▶</button>
+
+        <div class="song-info">
+            <div class="song-title">Przykładowy utwór</div>
+            <div class="song-file">
+                music/przykladowy-utwor.mp3
+            </div>
+        </div>
+
+        <a
+            class="download"
+            href="music/przykladowy-utwor.mp3"
+            download
+        >
+            Pobierz
+        </a>
+    </article>
+
+    <article class="song" data-name="Drugi utwór">
+        <button
+            class="play"
+            onclick="playSong(
+                'Drugi utwór',
+                'music/drugi-utwor.mp3'
+            )"
+        >▶</button>
+
+        <div class="song-info">
+            <div class="song-title">Drugi utwór</div>
+            <div class="song-file">
+                music/drugi-utwor.mp3
+            </div>
+        </div>
+
+        <a
+            class="download"
+            href="music/drugi-utwor.mp3"
+            download
+        >
+            Pobierz
+        </a>
+    </article>
+
+</section>
+
+<div class="empty" id="empty">
+    Nie znaleziono żadnych utworów 🎵
+</div>
+
+<footer>
+    Noteblockly · Muzyka z Note Blocków
+</footer>
+```
+
+</main>
+
+<div class="player">
+    <div class="player-inner">
+
+```
+    <div class="now-playing">
+        <div class="now-playing-title" id="nowPlaying">
+            Nic nie jest odtwarzane
+        </div>
+
+        <div class="now-playing-subtitle">
+            Noteblockly Player
+        </div>
+    </div>
+
+    <audio id="audio" controls></audio>
+
+</div>
+```
+
+</div>
+
+<script>
+    const audio = document.getElementById("audio");
+    const nowPlaying = document.getElementById("nowPlaying");
+    const search = document.getElementById("search");
+    const songs = document.querySelectorAll(".song");
+    const count = document.getElementById("count");
+    const empty = document.getElementById("empty");
+
+    function playSong(title, file) {
+        audio.src = file;
+        audio.play();
+
+        nowPlaying.textContent = title;
+    }
+
+    function updateCount() {
+        let visible = 0;
+
+        songs.forEach(song => {
+            if (song.style.display !== "none") {
+                visible++;
+            }
+        });
+
+        count.textContent = visible + (visible === 1 ? " utwór" : " utwory");
+
+        empty.style.display = visible === 0 ? "block" : "none";
+    }
+
+    search.addEventListener("input", function () {
+        const query = search.value.toLowerCase().trim();
+
+        songs.forEach(song => {
+            const name = song.dataset.name.toLowerCase();
+
+            if (name.includes(query)) {
+                song.style.display = "flex";
+            } else {
+                song.style.display = "none";
+            }
+        });
+
+        updateCount();
+    });
+
+    updateCount();
+</script>
+
+</body>
+</html>
