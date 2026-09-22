@@ -30,7 +30,10 @@ Noteblockly/
 │   ├── utwor-1.mp3
 │   ├── utwor-2.mp3
 │   └── utwor-3.mp3
-└── README.md
+├── README.md
+├── index.html
+├── music
+└── itd.
 ```
 
 ## 🌐 Strona projektu
