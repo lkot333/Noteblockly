@@ -1,63 +1,55 @@
 # 🎵 Noteblockly
 
-**Noteblockly** to narzędzie do tworzenia i odtwarzania muzyki inspirowanej **Minecraft Note Blockami**.
+**Noteblockly** to kolekcja muzyki inspirowanej brzmieniem Minecraftowych Note Blocków.
 
-> 🎶 Zamień nuty w noteblocki!
+Projekt zawiera gotowe utwory w formacie **MP3**, które można odsłuchiwać i pobierać.
 
-## ✨ Funkcje
+## 🎶 Zawartość
 
-* 🎼 Tworzenie własnych utworów
-* 🟫 System nut inspirowany Minecraft Note Blockami
-* ▶️ Odtwarzanie stworzonej muzyki
-* ⏱️ Kontrola tempa utworu
-* 🎹 Obsługa różnych wysokości dźwięku
-* 💾 Zapisywanie i wczytywanie utworów
-* 🌐 Działanie w przeglądarce
+W repozytorium znajdują się:
 
-## 🧱 Czym jest Noteblockly?
+* 🎵 utwory muzyczne
+* 🔊 pliki MP3
+* 📁 uporządkowane kolekcje muzyki
 
-Noteblockly nie jest kolejnym narzędziem do programowania.
+Noteblockly **nie służy do tworzenia ani edytowania muzyki**. Jest to po prostu miejsce z gotowymi utworami.
 
-Nazwa nawiązuje do **Note Blocków**, czyli minecraftowych bloków pozwalających tworzyć muzykę. Projekt skupia się na muzyce, rytmie i układaniu dźwięków.
+## 📂 Format plików
 
-## 🚀 Uruchamianie
+Głównym formatem audio jest:
 
-Projekt można uruchomić bezpośrednio w przeglądarce.
+```text
+.mp3
+```
 
-Wersja online:
-
-**Coming soon...**
-
-## 🛠️ Technologie
-
-Noteblockly jest tworzony z wykorzystaniem technologii webowych, takich jak:
-
-* HTML
-* CSS
-* JavaScript
-* Web Audio API
-
-## 📁 Struktura projektu
+Przykładowa struktura:
 
 ```text
 Noteblockly/
-├── index.html
-├── style.css
-├── script.js
+├── music/
+│   ├── utwor-1.mp3
+│   ├── utwor-2.mp3
+│   └── utwor-3.mp3
 └── README.md
 ```
 
-## 🎮 Minecraft
+## 🌐 Strona projektu
 
-Noteblockly jest inspirowany systemem muzycznym Minecrafta, ale **nie jest częścią Minecrafta ani produktem firmy Mojang lub Microsoft**.
+Strona internetowa projektu:
 
-Minecraft jest znakiem towarowym firmy Microsoft Corporation.
+**Coming soon...**
+
+## 🧱 Inspiracja
+
+Nazwa **Noteblockly** pochodzi od Minecraftowych **Note Blocków**, które służą do tworzenia muzyki w grze.
+
+Noteblockly nie jest powiązane z Mojang Studios ani Microsoft.
 
 ## 📜 Licencja
 
-Licencja projektu zostanie określona w przyszłości.
+Informacje dotyczące praw autorskich i licencji poszczególnych utworów znajdują się przy odpowiednich plikach lub zostaną dodane w przyszłości.
 
 ---
 
 🎵 **Noteblockly**
-*Music made from blocks.*
+*Music made with Note Blocks.*
