@@ -22,17 +22,14 @@ Głównym formatem audio jest:
 .mp3
 ```
 
-Przykładowa struktura:
+Struktura plików:
 
 ```text
 Noteblockly/
-├── music/
-│   ├── utwor-1.mp3
-│   ├── utwor-2.mp3
-│   └── utwor-3.mp3
+├── music
 ├── README.md
 ├── index.html
-├── music
+├── app
 └── itd.
 ```
 
@@ -40,7 +37,7 @@ Noteblockly/
 
 Strona internetowa projektu:
 
-**Coming soon...**
+[link]lkot333.github.io/Noteblockly
 
 ## 🧱 Inspiracja
 
